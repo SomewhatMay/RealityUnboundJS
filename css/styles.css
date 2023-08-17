@@ -1,0 +1,11 @@
+@import "/css/sidebar.css";
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+
+:root {
+    --modern-blue: #3498db;
+}
