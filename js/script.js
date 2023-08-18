@@ -1,64 +1,82 @@
-// Array of strings
-const stringArray = {
-    Chat1: {
-        Name: "Chat1",
-        Saved: Date.now(),
-        Messages: [
-            {
-                role: "user",
-                content: "some message"
-            }
-        ]
-    },
+import savedChats from "/data/savedChats.json" assert {type: "json"};
 
-    "An epic tale": {
-        Name: "An epic tale",
-        Messages: [
-            {
-                role: "system",
-                content: "you are a person",
-            },
-            {
-                role: "assistant",
-                content: "Welcome to an Epic Tale named \"Epic Tale\"! Let's begin."
-            },
-            {
-                role: "user",
-                content: "I want to fly"
-            },
-        ]
-    },
-}
-
-// Function to handle button clicks
-function handleButtonClick(string) {
-    console.log("Clicked: " + string);
-}
+let sidebarChatContainer = undefined;
 
 class ChatButton {
-    Button(chatInfo) {
+    constructor(chatInfo) {
+        var container = document.createElement("div")
+        container.className = "chat_button_container";
 
+        var button = document.createElement("button");
+        button.className = "chat_button";
+        button.textContent = chatInfo.Name;
+
+        var closeButton = document.createElement("button");
+        closeButton.className = "chat_close_button";
+        closeButton.textContent = "x";
+
+        button.addEventListener("click", () => this.onClick());
+        closeButton.addEventListener("click", () => this.close());
+
+        container.appendChild(button);
+        container.appendChild(closeButton);
+        sidebarChatContainer.insertBefore(container, sidebarChatContainer.firstElement);
+
+        this.chatInfo = chatInfo;
+        this.button = button;
     }
 
     onClick() {
-        console.log("Clicked" + this.name);
+        console.log("Clicked " + this.chatInfo.Name);
+    }
+
+    close() {
+        console.log("Tried to close " + this.chatInfo.Name);
     }
 }
 
+class NewChatButton {
+    constructor() {
+        this.button = document.querySelector("#new-chat-button");
+
+        this.button.addEventListener("click", () => this.onClick());
+    }
+
+    onClick() {
+        console.log("tired to create a new chat!");
+    }
+}
+
+
+class SaveButton {
+    constructor() {
+        this.button = document.querySelector("#save-button");
+
+        this.button.addEventListener("click", () => this.onClick());
+    }
+
+    onClick() {
+        console.log("tired to save!");
+    }
+}
+
+
+function loadAllMessages() {
+    console.log(savedChats);
+
+    // for (const [key, value] of Object.entries(savedChats)) 
+    //     new ChatButton(value);
+}
+
 // Function to create buttons in the sidebar
-function createButtons() {
-    const sidebar = document.querySelector('.sidebar');
-    
-    stringArray.forEach(string => {
-        const button = document.createElement('button');
-        button.className = 'chat_button';
-        button.textContent = string;
-        
-        button.addEventListener('click', () => handleButtonClick(string));
-        
-        sidebar.appendChild(button);
-    });
+function startApp() {
+    sidebarChatContainer = document.querySelector(".sidebar__chats_container");
+
+    new SaveButton();
+    new NewChatButton();
+
+    loadAllMessages();
 }
 
 // Call the function to create buttons when the DOM is loaded
-document.addEventListener('DOMContentLoaded', createButtons);
+document.addEventListener('DOMContentLoaded', startApp);
