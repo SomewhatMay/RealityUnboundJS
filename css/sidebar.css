@@ -1,7 +1,7 @@
 .sidebar {
     height: 100vh;
     width: 300px;
-    background-color: #f0f0f0;
+    background-color: transparent;
     padding: 10px;
     float: left;
 }
@@ -9,7 +9,7 @@
 .sidebar__title_container {
     width: 100%;
     height: 30px;
-    border-radius: 8px;
+    border-radius: var(--border-radius);
     background-color: transparent;
 
     display: flex;
@@ -19,19 +19,19 @@
 
 .sidebar__title_label {
     text-align: center;
-    border-radius: 8px;
+    border-radius: var(--border-radius);
     height: calc(100% - 5px);
     width: calc(100% - (24px * 2));
-    background-color: #c6c5c5;
+    background-color: var(--frame-background);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .sidebar__button {
-    background-color: var(--modern-blue);
+    background-color: var(--blue);
     border: transparent;
-    border-radius: 8px;
+    border-radius: var(--border-radius);
     width: 24px;
     padding: 2px;
     margin-left: 5px;
@@ -39,9 +39,79 @@
     font-size: 15px;
 }
 
+.sidebar__button:hover {
+    background-color: var(--darker-blue);
+}
+
+#save-button {
+    font-size: .8em;
+}
+
 #new-chat-button {
     width: 21px;
     display:flex;
     align-items: center;
     justify-content: center;
+    color: #fff;
+}
+
+.sidebar__chats_container {
+    width: 100%;
+    height: calc(100% - 60px);
+    border-radius: var(--border-radius);
+    margin-top: 5px;
+    padding-top: 1px;
+    padding-bottom: 10px;
+    align-items: flex-start;
+    justify-content: center;
+    background-color: var(--frame-background);
+    overflow: auto;
+}
+
+.chat_button_container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: calc(100% - 20px);
+    height: 25px;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    margin-left: 5px;
+    border: transparent;
+    padding-left: 10px;
+    border-radius: var(--border-radius);
+    background-color: var(--button-background);
+
+    translate: background-color;
+}
+
+.chat_button_container:hover {
+    background-color: var(--hover-button-background);
+}
+
+.chat_button {
+    width: calc(100% - 25px);
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    text-align: left;
+    border: transparent;
+    background-color: transparent;
+    color: #fff;
+}
+
+.chat_close_button {
+    width: 20px;
+    margin-right: 2px;
+    background-color: transparent;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    border: transparent;
+    border-radius: var(--border-radius);
+    color: #fff;
+}
+
+.chat_close_button:hover {
+    background-color: red;
 }
