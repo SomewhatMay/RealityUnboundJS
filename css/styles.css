@@ -8,4 +8,6 @@ body {
 
 :root {
     --modern-blue: #3498db;
+
+    --border-radius: 3px
 }
